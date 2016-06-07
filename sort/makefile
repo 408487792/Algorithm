@@ -1,7 +1,11 @@
 OBJS = main.cpp
+TARGET = main.o
 CXX = g++
 CXXFLAGS = -Wall -pedantic -O -g
-main.o : $(OBJS)
+$(TARGET) : $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 clean:
-	rm -rf main.o
+	rm -rf $(TARGET)
+restart:
+	rm -rf $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
