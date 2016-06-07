@@ -11,13 +11,15 @@ void insertSort(int *arr, int size){
 	for (i = 1; i < size; ++i) {
 		kval = arr[i];
 		j = i - 1;
-		while(j >=0 && kval < arr[j]){//min to max
-			arr[i] = arr[j];
+		while(j > 0 && kval < arr[j]){//min to max
+			arr[j+1] = arr[j];
 			j--;
 		}
 		arr[j] = kval;
+		cout << "j = " << j << endl;
 	}
-	cout << "i=" << i << ";j=";
+	print_a(arr, arr + 10);
+	cout << "i=" << i << ";j=" << j << endl;
 }
 
 
