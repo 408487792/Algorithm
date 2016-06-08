@@ -6,6 +6,11 @@
 */
 
 
+$arr = [9,8,7,6,4,5,55,44,99,3,2,1,0];
+print_r($arr);
+MERGE_SORT($arr, 0, count($arr)-1);
+print_r($arr);
+
 /**
  * 归并排序
  * @param array $arr
@@ -41,20 +46,15 @@ function MERGE(&$arr, $startIndex, $middleIndex, $endIndex) {
     for ($i = $middleIndex + 1; $i <= $endIndex; $i++) $R[] = $arr[$i];
     for ($index = $startIndex, $i = 0, $j = 0; $index <= $endIndex; ++$index) {
         if($i >= $countL && $j < $countR) {
-            $arr[$index] = $R[$j];
-            ++$j;
-            continue;
+            $arr[$index] = $R[$j++];
         }else if($j >= $countR && $i < $countL) {
-            $arr[$index] = $L[$i];
-            ++$i;
-            continue;
-        }
-        if ($L[$i] <= $R[$j]) {
-            $arr[$index] = $L[$i];
-            ++$i;
+            $arr[$index] = $L[$i++];
         }else {
-            $arr[$index] = $R[$j];
-            ++$j;
+            if ($L[$i] <= $R[$j]) {
+                $arr[$index] = $L[$i++];
+            }else {
+                $arr[$index] = $R[$j++];
+            }
         }
     }
 }

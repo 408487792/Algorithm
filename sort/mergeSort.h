@@ -13,21 +13,20 @@ void merge(int *arr, int st_ind, int mid_ind, int end_ind){
 		L[i] = arr[st_ind + i];
 	}
 	for (j = 0; j < r_cnt; ++j) {
-		R[j] = arr[mid_ind + j];
+		R[j] = arr[mid_ind + 1 + j];
 	}
-	cout << "cnt:" << end_ind - st_ind << endl;
-	cout << "L:" << l_cnt << endl;
-	print_a(L, L+l_cnt);
-	cout << "R:" << r_cnt << endl;
-	print_a(R, R+r_cnt);
 	i = j = 0;
 	for (k = st_ind; k <= end_ind; ++k) {
-		if (i < l_cnt && L[i] <= R[j]) {
-			arr[k] = L[i];
-			i++;
-		} else {
-			arr[k] = R[j];
-			j++;
+		if (i >= l_cnt && j < r_cnt) {// L is end
+			arr[k] = R[j++];
+		} else if (j >= r_cnt && i < l_cnt){// R is end
+			arr[k] = L[i++];
+		}else{ // L & R not end
+			if (L[i] <= R[j]) {
+				arr[k] = L[i++];
+			} else {
+				arr[k] = R[j++];
+			}
 		}
 	}
 	delete [] L;
